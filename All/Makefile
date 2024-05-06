@@ -1,6 +1,9 @@
-.PHONY: Exe2 Exe3 Exe4 Exe5 Exe6
+.PHONY: Exe1 Exe2 Exe3 Exe4 Exe5 Exe6
 
-all: Exe2 Exe3 Exe4 Exe5 Exe6
+all: Exe1 Exe2 Exe3 Exe4 Exe5 Exe6
+
+Exe1:
+	cd Exe1 && make all
 
 Exe2:
 	cd Exe2 && make all
@@ -19,6 +22,7 @@ Exe6:
 
 
 clean:
+	cd Exe1 && make clean
 	cd Exe2 && make clean
 	cd Exe3 && make clean
 	cd Exe4 && make clean
