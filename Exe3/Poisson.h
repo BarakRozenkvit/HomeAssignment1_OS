@@ -1,8 +1,4 @@
-#include <stdio.h>
 #include <math.h>
-#include <string.h>
-#include <stdlib.h>
-
-long double calcPoisson(int lamda,int k);
-
-int factorial(int k);
+#include <stdio.h>
+float factorial(int k);
+long double poisson(int k,double lambda);
