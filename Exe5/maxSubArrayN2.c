@@ -24,6 +24,6 @@ int main(int argc,char* argv[]){
 
     int* array = createArray(randomSeed,size);
     int result = maxSubArray_n2(array,size);
-    printf("Result: %d\n",result);
+    printf("Result for N^2: %d\n",result);
     return 0;
 }

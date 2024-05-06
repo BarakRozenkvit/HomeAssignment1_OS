@@ -26,6 +26,6 @@ int main(int argc,char* argv[]){
 
     int* array = createArray(randomSeed,size);
     int result = maxSubArray_n3(array,size);
-    printf("%d",result);
+    printf("Result for N^3: %d\n",result);
     return 0;
 }
