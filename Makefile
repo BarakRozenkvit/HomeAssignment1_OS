@@ -1,30 +1,17 @@
 .PHONY: Exe1 Exe2 Exe3 Exe4 Exe5 Exe6
 
-all: Exe1 Exe2 Exe3 Exe4 Exe5 Exe6
-
-Exe1:
-	cd Exe1 && make all
-
-Exe2:
-	cd Exe2 && make all
-
-Exe3:
-	cd Exe3 && make all
-
-Exe4:
-	cd Exe4 && make all
-
-Exe5:
-	cd Exe5 && make all
-
-Exe6:
-	cd Exe6 && make all
-
+all:
+	make -C Exe1 all
+	make -C Exe2 all
+	make -C Exe3 all
+	make -C Exe4 all
+	make -C Exe5 all
+	make -C Exe6 all
 
 clean:
-	cd Exe1 && make clean
-	cd Exe2 && make clean
-	cd Exe3 && make clean
-	cd Exe4 && make clean
-	cd Exe5 && make clean
-	cd Exe6 && make clean
+	make -C Exe1 clean
+	make -C Exe2 clean
+	make -C Exe3 clean
+	make -C Exe4 clean
+	make -C Exe5 clean
+	make -C Exe6 clean

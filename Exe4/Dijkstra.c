@@ -76,91 +76,65 @@ void dijkstra(int **graph,int size, int src){
     free(sptSet);
 }
 
+int main(void){
 
-int main(){
-    int **graph; // Pointer to pointer for 2D array
-    int size;
-    printf("Enter the size of the matrix:\n");
-    scanf("%d",&size);
-    // Allocate memory for the graph matrix
-    graph = (int **)malloc(size* sizeof(int *));
-    if (graph == NULL) {
-        printf("Memory allocation failed\n");
+    int v;
+    printf("Enter number of Vertices:\n");
+    int res = scanf("%d",&v);
+    if(!res) {
+        perror("invalid argument: not a number");
         return 1;
     }
-    for (int i = 0; i < size; i++) {
-        graph[i] = (int *)malloc(size * sizeof(int));
-        if (graph[i] == NULL) {
-            printf("Memory allocation failed\n");
-            // Free memory for previously allocated rows
-            for (int j = 0; j < i; j++) {
-                free(graph[j]);
+
+    fflush(0);
+
+    int** matrix = (int**)malloc(sizeof(int*)*v);
+    if(!matrix){
+        perror("malloc");
+        return 1;
+    }
+
+    for(int i=0;i<v;i++){
+        matrix[i] = (int*) malloc(sizeof(int)*v);
+        if(!matrix[i]){
+            for(int i=0;i<v;i++){
+                free(matrix[i]);
             }
-            // Free memory for graph pointer array
-            free(graph);
+            free(matrix);
             return 1;
         }
-    }
-    for (int i = 0; i < size; i++) {
-        printf("Enter row %d: ", i + 1);
+        printf("Enter Row %d:\n",i);
+        int j = 0;
+        char w = ' ';
+        while (1)
+        {
+            scanf("%c",&w);
 
-        // Read the row of the graph matrix
-        for (int j = 0; j < size; j++) {
-            if (scanf("%d", &graph[i][j]) != 1) {
-                printf("Invalid input. Please enter integers only.\n");
-                // Free memory before returning
-                for (int k = 0; k < size; k++) {
-                    free(graph[k]);
-                }
-                free(graph);
+            if(w == '\n'){ break;}
+            if(w == ' '){ continue;}
+            if(j >= v){
+                perror("too much arguments provided in row");
                 return 1;
             }
-            if (graph[i][j] < 0) {
-                printf("Negative numbers are not allowed.\n");
-                // Free memory before returning
-                for (int k = 0; k < size; k++) {
-                    free(graph[k]);
-                }
-                free(graph);
+            int num = w - '0';
+            if(num > 9 || num < 0){
+                perror("provided invalid argument: negative number or not a number");
                 return 1;
             }
-            if (i != j && graph[i][j] != graph[j][i]) {
-                printf("Graph is not directed, but matrix is not symmetric.\n");
-                // Free memory before returning
-                for (int k = 0; k < size; k++) {
-                    free(graph[k]);
-                }
-                free(graph);
+            if(i==j && num != 0){
+                perror("provided invalid argument: no edge from v to v");
                 return 1;
             }
+            matrix[i][j] = num;
+            j++;
         }
-
-        // Check if too many numbers were entered
-        int c;
-        do {
-            c = getchar();
-        } while (c != '\n' && c != EOF);
-
-        if (c == EOF) {
-            printf("Not enough numbers entered.\n");
-            // Free memory before returning
-            for (int j = 0; j <= i; j++) {
-                free(graph[j]);
-            }
-            free(graph);
+        if(j < v){
+            perror("not enough arguments provided in row");
             return 1;
         }
     }
 
-    // Function call
-    dijkstra(graph, size,0);
-
-    // Free memory
-    for (int i = 0; i < size; i++) {
-        free(graph[i]);
-    }
-    free(graph);
+    dijkstra(matrix,v,0);
 
     return 0;
 }
-

@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -pedantic -std=c99
+CFLAGS = -Wall -pedantic -std=c99
 LIBS =-lm
 
 all: ex3

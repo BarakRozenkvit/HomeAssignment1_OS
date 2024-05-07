@@ -1,5 +1,5 @@
 #include "Poisson.h"
-int main(){
+int main(void){
     int k[] ={1,10,2,3,3};
     double lambda []={2,2,2,3,100};
     for(int i=0;i<5;i++){

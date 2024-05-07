@@ -3,15 +3,24 @@ CFLAGS = -Wall -Wextra -g
 
 all: StackOverFlow ZeroDevision NullPointer
 
-StackOverFlow: StackOverFlow.c
-	$(CC) $(CFLAGS) -o StackOverFlow StackOverFlow.c
+StackOverFlow: StackOverFlow.o
+	$(CC) $(CFLAGS) -o StackOverFlow StackOverFlow.o
 
-ZeroDevision: ZeroDevision.c
-	$(CC) $(CFLAGS) -o ZeroDevision ZeroDevision.c
+ZeroDevision: ZeroDevision.o
+	$(CC) $(CFLAGS) -o ZeroDevision ZeroDevision.o
 
-NullPointer: NullPointer.c
-	$(CC) $(CFLAGS) -o NullPointer NullPointer.c
+NullPointer: NullPointer.o
+	$(CC) $(CFLAGS) -o NullPointer NullPointer.o
+
+StackOverFlow.o: StackOverFlow.c
+	$(CC) $(CFLAGS) -c StackOverFlow.c
+
+ZeroDevision.o: ZeroDevision.c
+	$(CC) $(CFLAGS) -c ZeroDevision.c
+
+NullPointer.o: NullPointer.c
+	$(CC) $(CFLAGS) -c NullPointer.c
 
 clean:
-	rm -f StackOverFlow ZeroDevision NullPointer
+	rm -f StackOverFlow ZeroDevision NullPointer StackOverFlow.o ZeroDevision.o NullPointer.o
 
