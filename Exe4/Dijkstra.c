@@ -78,15 +78,14 @@ void dijkstra(int **graph,int size, int src){
 
 int main(void){
 
+    char slash_n;
     int v;
     printf("Enter number of Vertices:\n");
-    int res = scanf("%d",&v);
+    int res = scanf("%d%c",&v,&slash_n);
     if(!res) {
         perror("invalid argument: not a number");
         return 1;
     }
-
-    fflush(0);
 
     int** matrix = (int**)malloc(sizeof(int*)*v);
     if(!matrix){
