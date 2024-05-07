@@ -76,7 +76,7 @@ void dijkstra(int **graph,int size, int src){
     free(sptSet);
 }
 
-int freeMatrix(int** matrix){
+int freeMatrix(int** matrix,int v){
     for(int i=0;i<v;i++){
         free(matrix[i]);
     }
@@ -106,7 +106,7 @@ int main(void){
     for(int i=0;i<v;i++){
         matrix[i] = (int*) malloc(sizeof(int)*v);
         if(!matrix[i]){
-            freeMatrix(matrix);
+            freeMatrix(matrix,v);
             return 1;
         }
         printf("Enter Row %d:\n",i);
@@ -118,24 +118,24 @@ int main(void){
             int res1 = scanf("%d",&w);
             if(!res1){
                 perror("invalid argument: not a number");
-                freeMatrix(matrix);
+                freeMatrix(matrix,v);
                 return 1;
             }
             scanf("%c",&c);
             if(j >= v){
                 perror("too much arguments provided in row");
-                freeMatrix(matrix);
+                freeMatrix(matrix,v);
                 return 1;
             }
 
             if(w < 0){
                 perror("provided invalid argument: negative number or not a number");
-                freeMatrix(matrix);
+                freeMatrix(matrix,v);
                 return 1;
             }
             if(i==j && w != 0){
                 perror("provided invalid argument: no edge from v to v");
-                freeMatrix(matrix);
+                freeMatrix(matrix,v);
                 return 1;
             }
             matrix[i][j] = w;
@@ -143,7 +143,7 @@ int main(void){
 
             if(c!=' ' && c!='\n'){
                 perror("not space or end line");
-                freeMatrix(matrix);
+                freeMatrix(matrix,v);
                 return 1;
             }
 
@@ -151,7 +151,7 @@ int main(void){
         }
         if(j < v){
             perror("not enough arguments provided in row");
-            freeMatrix(matrix);
+            freeMatrix(matrix,v);
             return 1;
         }
     }
