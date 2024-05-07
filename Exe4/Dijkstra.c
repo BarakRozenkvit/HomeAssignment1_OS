@@ -76,7 +76,7 @@ void dijkstra(int **graph,int size, int src){
     free(sptSet);
 }
 
-int freeMatrix(int** matrix,int v){
+void freeMatrix(int** matrix,int v){
     for(int i=0;i<v;i++){
         free(matrix[i]);
     }
