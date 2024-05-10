@@ -24,3 +24,4 @@ createArray.o: createArray.c createArray.h
 clean:
 	rm maxSubArrayN maxSubArrayN2 maxSubArrayN3
 	rm *.o
+	rm gmon.out
