@@ -23,7 +23,11 @@ void dijkstra(int **graph,int size, int src){
 	int * dist=(int *)malloc(size*sizeof(int)); // The output array. dist[i] will hold the
 	// shortest
 	// distance from src to i
-    if(dist==NULL) printf("Memory allocation failed\n");
+    if(dist==NULL) {
+        printf("Memory allocation failed\n");
+        freeMatrix(graph,size);
+        exit(1);
+    }
 
 	bool * sptSet=(bool*)malloc(size*sizeof(bool)); // sptSet[i] will be true if vertex i is
 	// included in shortest
@@ -31,7 +35,9 @@ void dijkstra(int **graph,int size, int src){
 	// finalized
     if(sptSet==NULL){  
         free(dist);
+        freeMatrix(graph,size);
         printf("Memory allocation failed\n");
+        exit(1);
     }
     
 
@@ -142,7 +148,7 @@ int main(void){
             j++;
 
             if(c!=' ' && c!='\n'){
-                perror("not space or end line");
+                perror("number include character");
                 freeMatrix(matrix,v);
                 return 1;
             }
@@ -165,6 +171,6 @@ int main(void){
     }
 
     dijkstra(matrix,v,0);
-
+    freeMatrix(matrix,v);
     return 0;
 }
