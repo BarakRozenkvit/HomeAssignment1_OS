@@ -15,3 +15,7 @@ clean:
 	make -C Exe4 clean
 	make -C Exe5 clean
 	make -C Exe6 clean
+
+zip:
+	tar -cvf 314638669_315158568O.tar Exe1 Exe2 Exe3 Exe4 Exe5 Exe6 Makefile *.pdf
+	gzip 314638669_315158568O.tar

@@ -2,6 +2,14 @@
 // algorithm. The program is for adjacency matrix
 // representation of the graph
 #include "Dijkstra.h"
+
+void freeMatrix(int** matrix,int v){
+    for(int i=0;i<v;i++){
+        free(matrix[i]);
+    }
+    free(matrix);
+}
+
 // A utility function to find the vertex with minimum
 // distance value, from the set of vertices not yet included
 // in shortest path tree
@@ -80,13 +88,6 @@ void dijkstra(int **graph,int size, int src){
 		printf("%d \t\t\t\t %d\n", i, dist[i]);
     free(dist);
     free(sptSet);
-}
-
-void freeMatrix(int** matrix,int v){
-    for(int i=0;i<v;i++){
-        free(matrix[i]);
-    }
-    free(matrix);
 }
 
 int main(void){
